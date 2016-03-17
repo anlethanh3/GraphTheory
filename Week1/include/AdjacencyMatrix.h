@@ -13,8 +13,8 @@ class AdjacencyMatrix : public AdjacencyGraph
 		~AdjacencyMatrix();
 		
 		int 		CountEdges();
-		char* 	PrintDegree();
-		int 		TypeOfGraph();
+		void 		GetDegrees(int*& degrees);
+		int 		GetTypeOfGraph();
 		
 		void 		ReadInput(char* file);
 		void 		PrintOutput(char* file);

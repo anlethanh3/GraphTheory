@@ -14,8 +14,8 @@ class AdjacencyList : public AdjacencyGraph
 		~AdjacencyList();
 		
 		int 		CountEdges();
-		char* 	PrintDegree();
-		int 		TypeOfGraph();
+		void 		GetDegrees(int*& degrees);
+		int 		GetTypeOfGraph();
 		
 		void 		ReadInput(char* file);
 		void 		PrintOutput(char* file);

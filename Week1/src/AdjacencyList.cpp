@@ -15,27 +15,28 @@ AdjacencyList::~AdjacencyList()
 int AdjacencyList::CountEdges()
 {
 	int sum = 0;
-	for(int i=0; i<this->n;i++)
+	for(int i = 0; i < this->n; i++)
 	{
 		sum += this->list[i].GetLength();
 	}
+	sum /= 2;
 	return sum;
 }
 
-char* AdjacencyList::PrintDegree()
+void AdjacencyList::GetDegrees(int*& degrees)
 {
-	char* buffer = new char[50];
-	for(int i=0; i<this->n;i++)
+	degrees = new int[this->n];
+	
+	for(int i = 0; i < this->n; i++)
 	{
-		sprintf(buffer,"%d %d",buffer,this->list[i].GetLength());
+		degrees[i] = this->list[i].GetLength();
 	}
-	return buffer;
 }
 
-int AdjacencyList::TypeOfGraph()
+int AdjacencyList::GetTypeOfGraph()
 {
-	int result[2] = {0,0};
-	for(int i=0; i<this->n;i++)
+	int result[3] = {0,0,0};
+	for(int i = 0; i < this->n; i++)
 	{
 		if(this->list[i].GetLength() == this->n - 1)
 		{
@@ -45,6 +46,22 @@ int AdjacencyList::TypeOfGraph()
 		{
 			result[1]++;
 		}
+		else if(this->list[i].GetLength() == 1)
+		{
+			result[2]++;
+		}
+	}
+	if(result[0] == this->n)
+	{
+		return 1;
+	}
+	else if(result[1] == this->n)
+	{
+		return 2;
+	}
+	else if(result[0] == 1 && result[2] == this->n-1)
+	{
+		return 3;
 	}
 	return 0;
 }
@@ -52,29 +69,44 @@ int AdjacencyList::TypeOfGraph()
 void AdjacencyList::ReadInput(char* file)
 {
 	std::fstream fs;
-	int temp = 0;
-	fs.open(file,std::fstream::in);
+	SNode* node;
+	int temp[2] = {-1,-1};
+	fs.open(file, std::fstream::in);
 	fs >> this->n;
 	fs >> this->m;
 	this->list = new CSingleLinkedList[this->n];
-	for(int i=0; i<this->m; i++)
+	for(int i = 0; i < this->m; i++)
 	{
-		fs >> temp;
-		SNode* node = new SNode();
+		fs >> temp[0];
+		fs >> temp[1];
+		
+		node = new SNode();
 		node->pNext = NULL;
-		fs >> node->value;
-		this->list[temp].Add(node);
+		node->value 	= temp[1];
+		this->list[temp[0]].Add(node);
+		
+		node = new SNode();
+		node->pNext = NULL;
+		node->value 	= temp[0];
+		this->list[temp[1]].Add(node);
 	}
 	fs.close();
-	// for(int i =0; i<this->n; i++)
-	// {
-		// std::cout<<i<<" ";
-		// this->list[i].Print();
-		// std::cout<<std::endl;
-	// }
 }
 
 void AdjacencyList::PrintOutput(char* file)
 {
-	
+	std::fstream fs;
+	int* degrees;
+	fs.open(file, std::fstream::out);
+	fs << this->CountEdges() << std::endl;
+	this->GetDegrees(degrees);
+	for(int i=0; i < this->n; i++)
+	{
+		fs << degrees[i] << " ";
+	}
+	fs << std::endl;
+	fs << this->GetTypeOfGraph();
+	fs.close();
+	delete []degrees;
+	degrees = NULL;
 }

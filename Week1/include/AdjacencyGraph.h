@@ -9,12 +9,12 @@ class AdjacencyGraph
 		AdjacencyGraph();
 		~AdjacencyGraph();
 		
-		virtual int 		CountEdges() 				= 0;
-		virtual char* 	PrintDegree()				= 0;
-		virtual int 		TypeOfGraph() 				= 0;
+		virtual int 		CountEdges() 					= 0;
+		virtual void 	GetDegrees(int*& degrees)	= 0;
+		virtual int 		GetTypeOfGraph() 			= 0;
 		
-		virtual void 	ReadInput(char* file) 	= 0;
-		virtual void 	PrintOutput(char* file) 	= 0;
+		virtual void 	ReadInput(char* file) 		= 0;
+		virtual void 	PrintOutput(char* file) 		= 0;
 };
 
 #endif

@@ -26,8 +26,8 @@ void CSingleLinkedList::Add(SNode* node)
 		}
 		temp->pNext = node;
 		node->pNext = NULL;
-		this->length += 1;
 	}
+	this->length++;
 }
 
 void CSingleLinkedList::Print()
