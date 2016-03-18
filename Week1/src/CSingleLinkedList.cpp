@@ -1,5 +1,4 @@
 #include "CSingleLinkedList.h"
-#include <iostream>
 
 CSingleLinkedList::CSingleLinkedList()
 {
@@ -9,6 +8,16 @@ CSingleLinkedList::CSingleLinkedList()
 
 CSingleLinkedList::~CSingleLinkedList()
 {
+	SNode* temp;
+	while(pHead)
+	{
+		temp = this->pHead;
+		this->pHead = pHead->pNext;
+		temp->pNext = NULL;
+		temp->value = -1;
+		delete temp;
+		temp = NULL;
+	}
 }
 		
 void CSingleLinkedList::Add(SNode* node)
@@ -28,16 +37,6 @@ void CSingleLinkedList::Add(SNode* node)
 		node->pNext = NULL;
 	}
 	this->length++;
-}
-
-void CSingleLinkedList::Print()
-{
-	SNode* temp = this->pHead;
-	while(temp != NULL)
-	{
-		std::cout << temp->value << " ";
-		temp = temp->pNext;
-	}
 }
 
 int CSingleLinkedList::GetLength()

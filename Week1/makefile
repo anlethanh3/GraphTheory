@@ -1,4 +1,4 @@
-LINK_TARGET = ez_lol.exe
+LINK_TARGET = 1542201.exe
 OBJDIR = obj
 BINDIR = bin
 

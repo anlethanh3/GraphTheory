@@ -1,9 +1,6 @@
-#include <iostream>
-#include <cstdlib>
 #include "AdjacencyGraph.h"
 #include "AdjacencyList.h"
 #include "AdjacencyMatrix.h"
-
 
 int main(int argc, char** argv)
 {	
@@ -11,21 +8,29 @@ int main(int argc, char** argv)
 	{
 		return 1;
 	}
-	int option =  atoi(argv[1]);
 	
 	AdjacencyGraph* graph;
 	
-	switch(option)
+	switch(argv[1][0])
 	{
-		case 0:
+		case '0':
 			graph = new AdjacencyList();
 			break;
-		case 1:
+		case '1':
 			graph = new AdjacencyMatrix();
 			break;
 	}
-	
-	graph->ReadInput(argv[2]);
-	graph->PrintOutput(argv[3]);
+	if(graph != NULL)
+	{
+		graph->ReadInput(argv[2]);
+		graph->PrintOutput(argv[3]);
+		
+		delete graph;
+		graph = NULL;
+	}
+	else
+	{
+		return 1;
+	}
 	return 0;
 }

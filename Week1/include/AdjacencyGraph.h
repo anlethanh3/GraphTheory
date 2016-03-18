@@ -7,7 +7,7 @@ class AdjacencyGraph
 		int type;
 	public:
 		AdjacencyGraph();
-		~AdjacencyGraph();
+		virtual ~AdjacencyGraph();
 		
 		virtual int 		CountEdges() 					= 0;
 		virtual void 	GetDegrees(int*& degrees)	= 0;

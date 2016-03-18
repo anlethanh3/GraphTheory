@@ -13,7 +13,6 @@ class CSingleLinkedList
 		~CSingleLinkedList();
 		
 		void 		Add(SNode* node);
-		void 		Print();
 		int 		GetLength();
 };
 

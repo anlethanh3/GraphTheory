@@ -1,5 +1,4 @@
 #include "AdjacencyMatrix.h"
-#include <iostream>
 #include <fstream>
 
 AdjacencyMatrix::AdjacencyMatrix()
@@ -9,7 +8,14 @@ AdjacencyMatrix::AdjacencyMatrix()
 
 AdjacencyMatrix::~AdjacencyMatrix()
 {
-	
+	for(int i=0; i<this->n;i++)
+	{
+		delete []this->matrix[i];
+		this->matrix[i] = NULL;
+	}
+	delete []this->matrix;
+	this->matrix = NULL;
+	this->n = 0;
 }
 
 int AdjacencyMatrix::CountEdges()

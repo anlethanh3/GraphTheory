@@ -1,7 +1,6 @@
 #include "AdjacencyList.h"
-#include <iostream>
 #include <fstream>
-#include <cstdio>
+
 AdjacencyList::AdjacencyList()
 {
 	this->type = 0;
@@ -9,7 +8,9 @@ AdjacencyList::AdjacencyList()
 
 AdjacencyList::~AdjacencyList()
 {
-	
+	delete []this->list;
+	this->list = NULL;
+	this->n = 0;
 }
 
 int AdjacencyList::CountEdges()
