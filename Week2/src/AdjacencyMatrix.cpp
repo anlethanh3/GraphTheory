@@ -154,15 +154,6 @@ void 	AdjacencyMatrix::ConvertMatrix(const CGraph& graph)
 	delete[] arrPoint;
 	arrPoint = NULL;
 	point = NULL;
-	
-	for(int i = 0; i < this->n; i++)
-	{
-		for(int j = 0; j < this->n; j++)
-		{
-			std::cout << this->matrix[i][j] <<" ";
-		}
-		std::cout << std::endl;
-	}
 }
 
 void AdjacencyMatrix::ReadInput(char* file)
@@ -184,18 +175,30 @@ void AdjacencyMatrix::ReadInput(char* file)
 
 void AdjacencyMatrix::PrintOutput(char* file)
 {
+	// std::fstream fs;
+	// int* degrees;
+	// fs.open(file, std::fstream::out);
+	// fs << this->CountEdges() << std::endl;
+	// this->GetDegrees(degrees);
+	// for(int i=0; i < this->n; i++)
+	// {
+		// fs << degrees[i] << " ";
+	// }
+	// fs << std::endl;
+	// fs << this->GetTypeOfGraph();
+	// fs.close();
+	// delete []degrees;
+	// degrees = NULL;
+	
 	std::fstream fs;
-	int* degrees;
 	fs.open(file, std::fstream::out);
-	fs << this->CountEdges() << std::endl;
-	this->GetDegrees(degrees);
-	for(int i=0; i < this->n; i++)
+	fs << this->n << std::endl;
+	for(int i = 0; i < this->n; i++)
 	{
-		fs << degrees[i] << " ";
+		for(int j = 0; j < this->n; j++)
+		{
+			fs << this->matrix[i][j] <<" ";
+		}
+		fs << std::endl;
 	}
-	fs << std::endl;
-	fs << this->GetTypeOfGraph();
-	fs.close();
-	delete []degrees;
-	degrees = NULL;
 }

@@ -19,6 +19,8 @@ int main(int argc, char** argv)
 	AdjacencyGraph* adjgraph = new AdjacencyMatrix();
 	adjgraph->ConvertMatrix(*graph);
 	
+	adjgraph->PrintOutput(argv[2]);
+	
 	delete graph;
 	delete adjgraph;
 	return 0;
