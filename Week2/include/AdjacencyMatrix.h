@@ -7,16 +7,20 @@ class AdjacencyMatrix : public AdjacencyGraph
 {
 	private:
 		int n;
-		bool** matrix;
+		int** matrix;
 	public:
 		AdjacencyMatrix();
+		AdjacencyMatrix(const int& n);
 		~AdjacencyMatrix();
 		
 		int 		CountEdges();
 		void 		GetDegrees(int*& degrees);
 		int 		GetTypeOfGraph();
+		int 		GetType();
 		
-		void 		ConvertMatrix(const CGraph& graph);
+		void 		SetPath(int edge1, int edge2, bool hasPath);
+		int** 	GetMatrix();
+		int		GetNumVertex();
 		
 		void 		ReadInput(char* file);
 		void 		PrintOutput(char* file);

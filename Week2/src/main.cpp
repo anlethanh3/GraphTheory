@@ -16,12 +16,10 @@ int main(int argc, char** argv)
 	fs >> *graph;
 	fs.close();
 	
-	AdjacencyGraph* adjgraph = new AdjacencyMatrix();
-	adjgraph->ConvertMatrix(*graph);
-	
-	adjgraph->PrintOutput(argv[2]);
+	graph->GenerateListPoint();
+	graph->GenerateAdjacencyGraph();
+	graph->RunBFS();
 	
 	delete graph;
-	delete adjgraph;
 	return 0;
 }

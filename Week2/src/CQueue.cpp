@@ -20,7 +20,7 @@ CQueue::~CQueue()
 	}
 }
 		
-void CQueue::Add(SNode* node)
+void CQueue::EnQueue(SNode* node)
 {
 	if(this->pHead == NULL)
 	{
@@ -37,6 +37,19 @@ void CQueue::Add(SNode* node)
 		node->pNext = NULL;
 	}
 	this->length++;
+}
+
+SNode* CQueue::DeQueue()
+{
+	SNode* temp;
+	if(pHead)
+	{
+		temp = this->pHead;
+		this->pHead = pHead->pNext;
+		temp->pNext = NULL;
+		this->length--;
+	}
+	return temp;
 }
 
 int CQueue::GetLength()

@@ -12,7 +12,8 @@ class CQueue
 		CQueue();
 		~CQueue();
 		
-		void 		Add(SNode* node);
+		void 		EnQueue(SNode* node);
+		SNode*	DeQueue();
 		int 		GetLength();
 };
 

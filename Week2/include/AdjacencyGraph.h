@@ -1,8 +1,6 @@
 #ifndef  _ADJACENCYGRAPH_H_
 #define _ADJACENCYGRAPH_H_
 
-#include "CGraph.h"
-
 class AdjacencyGraph
 {
 	protected:
@@ -14,8 +12,9 @@ class AdjacencyGraph
 		virtual int 		CountEdges() 						= 0;
 		virtual void 	GetDegrees(int*& degrees)	= 0;
 		virtual int 		GetTypeOfGraph() 				= 0;
+		virtual int 		GetType()								= 0;
 		
-		virtual void 	ConvertMatrix(const CGraph& graph) = 0;
+		virtual void 	SetPath(int edge1, int edge2, bool hasPath) = 0;
 		
 		virtual void 	ReadInput(char* file) 		= 0;
 		virtual void 	PrintOutput(char* file) 		= 0;

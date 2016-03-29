@@ -2,7 +2,7 @@ LINK_TARGET = 1542201.exe
 OBJDIR = obj
 BINDIR = bin
 
-OBJS =  SNode.o CStack.o CQueue.o SPoint.o CListPoint.o CMatrix.o CGraph.o AdjacencyGraph.o AdjacencyMatrix.o  main.o
+OBJS =  SNode.o CQueue.o CStack.o SPoint.o CListPoint.o CMatrix.o CGraph.o AdjacencyGraph.o AdjacencyMatrix.o BFS.o  main.o
 
 OUT_OBJS = $(addprefix $(OBJDIR)/,$(OBJS))
 

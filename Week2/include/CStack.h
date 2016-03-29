@@ -13,6 +13,8 @@ class CStack
 		~CStack();
 		
 		void 		Push(SNode* node);
+		SNode*	GetTop();
+		void		Pop();
 		int 		GetLength();
 };
 

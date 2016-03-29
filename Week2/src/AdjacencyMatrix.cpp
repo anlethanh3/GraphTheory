@@ -1,12 +1,24 @@
 #include "AdjacencyMatrix.h"
 #include <fstream>
-#include <iostream>
-#include "CQueue.h"
-#include "CListPoint.h"
 
 AdjacencyMatrix::AdjacencyMatrix()
 {
 	this->type = 1;
+}
+
+AdjacencyMatrix::AdjacencyMatrix(const int& n)
+{
+	this->type = 1;
+	this->n = n;
+	this->matrix = new int*[this->n];
+	for(int i = 0; i < this->n; i++)
+	{
+		this->matrix[i] = new int[this->n];
+		for(int j = 0; j < this->n; j++)
+		{
+			this->matrix[i][j] = 0;
+		}
+	}
 }
 
 AdjacencyMatrix::~AdjacencyMatrix()
@@ -86,74 +98,26 @@ int AdjacencyMatrix::GetTypeOfGraph()
 	return 0;
 }
 
-void 	AdjacencyMatrix::ConvertMatrix(const CGraph& graph)
+int AdjacencyMatrix::GetType()
 {
-	int m = graph.matrix->GetSize();
-	CListPoint* points = new CListPoint();
-	for(int i=0; i < m; i++)
+	return this->type;
+}
+
+int** AdjacencyMatrix::GetMatrix()
+{
+	return this->matrix;
+}
+
+int AdjacencyMatrix::GetNumVertex()
+{
+	return this->n;
+}
+void AdjacencyMatrix::SetPath(int edge1, int edge2, bool hasPath)
+{
+	if(edge1 < this->n && edge2 < this->n)
 	{
-		for(int j=0; j < m; j++)
-		{
-			if(graph.matrix->GetValue(i,j) == 0)
-			{
-				SPoint* point = new SPoint();
-				point->x = i;
-				point->y = j;
-				points->Add(point);
-			}
-		}
+		this->matrix[edge1][edge2] = hasPath;
 	}
-	this->n = points->GetLength();
-	this->matrix = new bool*[this->n];
-	for(int i = 0; i < this->n; i++)
-	{
-		this->matrix[i] = new bool[this->n];
-		for(int j = 0; j < this->n; j++)
-		{
-			this->matrix[i][j] = 0;
-		}
-	}
-	int k = -1;
-	SPoint p;
-	SPoint* point;
-	SPoint* arrPoint =  new SPoint[4];
-	for(int i=0; i < this->n; i++)
-	{
-		point = points->GetPoint(i);
-		
-		arrPoint[0].x = point->x+1;
-		arrPoint[0].y = point->y;
-		
-		arrPoint[1].x = point->x-1;
-		arrPoint[1].y = point->y;
-		
-		arrPoint[2].x = point->x;
-		arrPoint[2].y = point->y+1;
-		
-		arrPoint[3].x = point->x;
-		arrPoint[3].y = point->y-1;
-		
-		for(int j = 0; j<4; j++)
-		{
-			if(arrPoint[j].x >= m || arrPoint[j].y >= m || 
-				arrPoint[j].x < 0 || arrPoint[j].y < 0)
-			{
-				continue;
-			}
-			if(graph.matrix->GetValue(arrPoint[j].x, arrPoint[j].y) == 0)
-			{
-				k = points->GetIndexOf(&arrPoint[j]);
-				if(k != -1)
-				{
-					this->matrix[i][k] = 1;
-					this->matrix[k][i] = 1;
-				}
-			}
-		}
-	}
-	delete[] arrPoint;
-	arrPoint = NULL;
-	point = NULL;
 }
 
 void AdjacencyMatrix::ReadInput(char* file)
@@ -161,10 +125,10 @@ void AdjacencyMatrix::ReadInput(char* file)
 	std::fstream fs;
 	fs.open(file, std::fstream::in);
 	fs >> this->n;
-	this->matrix = new bool*[this->n];
+	this->matrix = new int*[this->n];
 	for(int i = 0; i < this->n; i++)
 	{
-		this->matrix[i] = new bool[this->n];
+		this->matrix[i] = new int[this->n];
 		for(int j = 0; j < this->n; j++)
 		{
 			fs >> this->matrix[i][j];
@@ -175,21 +139,6 @@ void AdjacencyMatrix::ReadInput(char* file)
 
 void AdjacencyMatrix::PrintOutput(char* file)
 {
-	// std::fstream fs;
-	// int* degrees;
-	// fs.open(file, std::fstream::out);
-	// fs << this->CountEdges() << std::endl;
-	// this->GetDegrees(degrees);
-	// for(int i=0; i < this->n; i++)
-	// {
-		// fs << degrees[i] << " ";
-	// }
-	// fs << std::endl;
-	// fs << this->GetTypeOfGraph();
-	// fs.close();
-	// delete []degrees;
-	// degrees = NULL;
-	
 	std::fstream fs;
 	fs.open(file, std::fstream::out);
 	fs << this->n << std::endl;

@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include "CMatrix.h"
-#include "SPoint.h"
+#include "AdjacencyGraph.h"
+#include "CListPoint.h"
 
 class CGraph
 {
@@ -11,9 +12,15 @@ class CGraph
 		CMatrix* matrix;
 		SPoint start;
 		SPoint goal;
+		AdjacencyGraph* adjGraph;
+		CListPoint* points;
 	public:
 		CGraph();
 		~CGraph();
+		
+		void GenerateListPoint();
+		void GenerateAdjacencyGraph();
+		void RunBFS();
 		
 		friend std::istream& operator >> (std::istream& inDevice, CGraph& graph);
 		friend std::ostream& operator << (std::ostream& outDevice, const CGraph& graph);
