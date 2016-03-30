@@ -84,7 +84,7 @@ void CGraph::GenerateAdjacencyGraph()
 	point = NULL;
 }
 
-void CGraph::RunBFS()
+void CGraph::RunBFS(char* file)
 {
 	int start = this->points->GetIndexOf(&this->start);
 	int goal = this->points->GetIndexOf(&this->goal);
@@ -94,10 +94,11 @@ void CGraph::RunBFS()
 	{
 		adjMatrix =  dynamic_cast<AdjacencyMatrix*>(this->adjGraph);
 		bfs->Run(adjMatrix->GetMatrix(), adjMatrix->GetNumVertex(), start, goal);
-		bfs->PrintPath(this->points, start, goal);
+		bfs->PrintPath(this->points, start, goal, file);
 	}
 	delete bfs;
 }
+
 std::istream& operator >> (std::istream& inDevice, CGraph& graph)
 {
 	int n = 0;

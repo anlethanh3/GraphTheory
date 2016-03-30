@@ -20,7 +20,7 @@ class CGraph
 		
 		void GenerateListPoint();
 		void GenerateAdjacencyGraph();
-		void RunBFS();
+		void RunBFS(char* file);
 		
 		friend std::istream& operator >> (std::istream& inDevice, CGraph& graph);
 		friend std::ostream& operator << (std::ostream& outDevice, const CGraph& graph);

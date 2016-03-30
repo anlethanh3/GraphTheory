@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 	
 	graph->GenerateListPoint();
 	graph->GenerateAdjacencyGraph();
-	graph->RunBFS();
+	graph->RunBFS(argv[2]);
 	
 	delete graph;
 	return 0;
