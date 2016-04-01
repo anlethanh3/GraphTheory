@@ -1,31 +1,19 @@
 #include "DFS.h"
 #include "Stack.h"
 #include <iostream>
-DFS::DFS()
+
+DFS::DFS() 
+	: Search()
 {
-	
 }
 
 DFS::DFS(const int& size)
-{
-	this->size = size;
-	this->labels = new int[this->size];
-	this->previous = new int[this->size];
-	for(int i=0; i<this->size; i++)
-	{
-		this->labels[i] = 0;
-		this->previous[i] = -1;
-	}
+	: Search(size)
+{	
 }
 
 DFS::~DFS()
 {
-	delete[] this->labels;
-	delete[] this->previous;
-	
-	this->size = 0;
-	this->labels = NULL;
-	this->previous = NULL;
 }
 
 void DFS::Run(int** matrix, int size, int start)
@@ -59,14 +47,5 @@ void DFS::Run(int** matrix, int size, int start)
 		{
 			stack->Pop();
 		}
-	}
-	for(int i=0;i<size;i++)
-	{
-		std::cout<<this->labels[i]<<" ";
-	}
-	std::cout<<std::endl;
-	for(int i=0;i<size;i++)
-	{
-		std::cout<<this->previous[i]<<" ";
 	}
 }

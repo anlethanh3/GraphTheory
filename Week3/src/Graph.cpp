@@ -1,5 +1,6 @@
 #include "Graph.h"
 #include "AdjacencyMatrix.h"
+#include "BFS.h"
 #include "DFS.h"
 
 Graph::Graph()
@@ -9,31 +10,58 @@ Graph::Graph()
 Graph::~Graph()
 {
 	delete this->adjGraph;
+	delete this->search;
 }
 
-void Graph::RunBFS(char* file)
+void Graph::Search(char* theory)
 {
-	// BFS* bfs = new BFS(this->points->GetLength());
-	// AdjacencyMatrix* adjMatrix = NULL;
-	// if(this->adjGraph->GetType() == 1)
-	// {
-		// adjMatrix =  dynamic_cast<AdjacencyMatrix*>(this->adjGraph);
-		// bfs->Run(adjMatrix->GetMatrix(), adjMatrix->GetNumVertex(), start, goal);
-		// bfs->PrintPath(this->points, start, goal, file);
-	// }
-	// delete bfs;
-}
-
-void Graph::RunDFS(char* file)
-{
-	AdjacencyMatrix* adjMatrix = NULL;
-	if(this->adjGraph->GetType() == 1)
+	int size = this->adjGraph->GetNumVertex();
+	int index = 0;
+	int* connected = new int[size];
+	int numConnected = 1;
+	for(int i=0; i < size; i++)
 	{
-		adjMatrix =  dynamic_cast<AdjacencyMatrix*>(this->adjGraph);
-		DFS* dfs = new DFS(adjMatrix->GetNumVertex());
-		dfs->Run(adjMatrix->GetMatrix(), adjMatrix->GetNumVertex(), 0);
-		delete dfs;
+		connected[i] = 0;
 	}
+	AdjacencyMatrix* adjMatrix = static_cast<AdjacencyMatrix*>(this->adjGraph);
+	switch(theory[0])
+	{
+		case 'b':
+			this->search = new BFS(size);
+			break;
+		case 'd':
+			this->search = new DFS(size);
+			break;
+	}
+	while(index != -1)
+	{
+		index = -1;
+		for(int i=0; i< size; i++)
+		{
+			if(this->search->GetLabel(i)==0)
+			{
+				index = i;
+				break;
+			}
+		}
+		if(index != -1)
+		{
+			this->search->Run(adjMatrix->GetMatrix(), size, index);
+			for(int i=0; i < size; i++)
+			{
+				if(this->search->GetLabel(i)==1 && connected[i] == 0)
+				{
+					connected[i] = numConnected;
+				}
+			}
+		}
+		numConnected++;
+	}
+	for(int i=0; i < size; i++)
+	{
+		std::cout<<connected[i]<< " ";
+	}
+	std::cout<<std::endl;
 }
 
 std::istream& operator >> (std::istream& inDevice, Graph& graph)

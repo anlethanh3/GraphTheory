@@ -4,7 +4,7 @@ BINDIR = bin
 SRCDIR = src
 INCDIR = include
 
-OBJS =  SNode.o Stack.o Graph.o AdjacencyGraph.o AdjacencyMatrix.o DFS.o  main.o
+OBJS =  SNode.o Stack.o Queue.o Search.o BFS.o DFS.o AdjacencyGraph.o AdjacencyMatrix.o Graph.o main.o
 
 OUT_OBJS = $(addprefix $(OBJDIR)/,$(OBJS))
 

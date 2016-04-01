@@ -1,36 +1,25 @@
 #include "BFS.h"
-#include "CQueue.h"
-#include "CStack.h"
-#include <fstream>
+#include "Queue.h"
+#include "Stack.h"
 
 BFS::BFS()
+	: Search()
 {
-	
+}
+
+BFS::BFS(const int& size)
+	: Search(size)
+{
 }
 
 BFS::~BFS()
 {
-	this->size = 0;
-	delete[] this->labels;
-	this->labels = NULL;
 }
 
-BFS::BFS(const int& size)
-{
-	this->size = size;
-	this->labels = new int[this->size];
-	this->previous = new int[this->size];
-	for(int i=0; i<this->size; i++)
-	{
-		this->labels[i] = 0;
-		this->previous[i] = -1;
-	}
-}
-
-void BFS::Run(int** matrix, int size, int start, int goal)
+void BFS::Run(int** matrix, int size, int start)
 {
 	int index = -1;
-	CQueue* queue = new CQueue();
+	Queue* queue = new Queue();
 	SNode* node = new SNode();
 	node->value = start;
 	queue->EnQueue(node);
@@ -56,41 +45,41 @@ void BFS::Run(int** matrix, int size, int start, int goal)
 	delete queue;
 }
 
-void BFS::PrintPath(CListPoint* points, int start, int goal, char* file)
-{
-	std::fstream fs;
-	int n = points->GetLength();
-	int index = goal;
-	CStack* stack = new CStack();
-	SNode* node = new SNode();
-	node->value = index;
-	stack->Push(node);
-	node = NULL;
-	while(previous[index] != -1 && stack->GetTop()->value != start)
-	{
-		node = new SNode();
-		node->value = this->previous[index];
-		stack->Push(node);
-		node = NULL;
-		index = this->previous[index];
-	}
-	fs.open(file, std::fstream::out);
-	if(stack->GetTop()->value == start)
-	{
-		do
-		{
-			SNode* top = stack->GetTop();
-			SPoint* point = points->GetPoint(top->value);
-			fs<< "(" << point->x <<","<< point->y << ")" <<" ";
-			stack->Pop();
-		}
-		while(stack->GetLength()>0);
-	}
-	else
-	{
-		fs<<"-1";
-	}
-	fs.close();
-	delete stack;
-	delete node;
-}
+// void BFS::PrintPath(CListPoint* points, int start, int goal, char* file)
+// {
+	// std::fstream fs;
+	// int n = points->GetLength();
+	// int index = goal;
+	// Stack* stack = new Stack();
+	// SNode* node = new SNode();
+	// node->value = index;
+	// stack->Push(node);
+	// node = NULL;
+	// while(previous[index] != -1 && stack->GetTop()->value != start)
+	// {
+		// node = new SNode();
+		// node->value = this->previous[index];
+		// stack->Push(node);
+		// node = NULL;
+		// index = this->previous[index];
+	// }
+	// fs.open(file, std::fstream::out);
+	// if(stack->GetTop()->value == start)
+	// {
+		// do
+		// {
+			// SNode* top = stack->GetTop();
+			// SPoint* point = points->GetPoint(top->value);
+			// fs<< "(" << point->x <<","<< point->y << ")" <<" ";
+			// stack->Pop();
+		// }
+		// while(stack->GetLength()>0);
+	// }
+	// else
+	// {
+		// fs<<"-1";
+	// }
+	// fs.close();
+	// delete stack;
+	// delete node;
+// }

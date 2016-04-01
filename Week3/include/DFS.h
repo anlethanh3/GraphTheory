@@ -1,12 +1,10 @@
 #ifndef _DFS_H_
 #define _DFS_H_
 
-class DFS
+#include "Search.h"
+
+class DFS : public Search
 {
-	private:
-		int* labels;
-		int* previous;
-		int size;
 	public:
 		DFS();
 		DFS(const int& size);

@@ -3,19 +3,18 @@
 
 #include <iostream>
 #include "AdjacencyGraph.h"
+#include "Search.h"
 
 class Graph
 {
 	public:
 		AdjacencyGraph* adjGraph;
+		Search* search;
 	public:
 		Graph();
 		~Graph();
 		
-		void GenerateListPoint();
-		void GenerateAdjacencyGraph();
-		void RunBFS(char* file);
-		void RunDFS(char* file);
+		void Search(char* theory);
 		
 		friend std::istream& operator >> (std::istream& inDevice, Graph& graph);
 		friend std::ostream& operator << (std::ostream& outDevice, const Graph& graph);

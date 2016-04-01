@@ -1,19 +1,16 @@
-#ifndef  _BFS_H_
+#ifndef _BFS_H_
 #define _BFS_H_
 
-class BFS
+#include "Search.h"
+
+class BFS : public Search
 {
-	private:
-		int* labels;
-		int* previous;
-		int size;
 	public:
 		BFS();
-		~BFS();
 		BFS(const int& size);
+		~BFS();
 		
-		void Run(int** matrix, int size, int start, int goal);
-		void PrintPath(CListPoint* points, int start, int goal, char* file);
+		void Run(int** matrix, int size, int start);
 };
 
 #endif

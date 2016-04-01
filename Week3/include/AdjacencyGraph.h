@@ -5,27 +5,17 @@ class AdjacencyGraph
 {
 	protected:
 		int type;
+		int size;
 	public:
 		AdjacencyGraph();
 		virtual ~AdjacencyGraph();
 		
-		virtual int 		CountEdges() 						= 0;
-		virtual void 	GetDegrees(int*& degrees)	= 0;
-		virtual int 		GetTypeOfGraph() 				= 0;
-		virtual int 		GetType()								= 0;
+		virtual void Read(std::istream& inDevice) = 0;
+		virtual void Write(std::ostream& outDevice) = 0;
 		
-		virtual void 	SetPath(int edge1, int edge2, bool hasPath) = 0;
+		int GetNumVertex();
 		
-		virtual void 	Read(std::istream& inDevice){};
-		virtual void 	Write(std::ostream& outDevice){};
-		
-		friend std::istream& operator >> (std::istream& inDevice, AdjacencyGraph& graph){
-			graph.Read(inDevice);
-			return inDevice;
-		}
-		friend std::ostream& operator << (std::ostream& outDevice, AdjacencyGraph& graph){
-			graph.Write(outDevice);
-			return outDevice;
-		}
+		friend std::istream& operator >> (std::istream& inDevice, AdjacencyGraph& graph);
+		friend std::ostream& operator << (std::ostream& outDevice, AdjacencyGraph& graph);
 };
 #endif

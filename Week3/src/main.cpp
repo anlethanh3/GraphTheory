@@ -1,8 +1,9 @@
-#include "Graph.h"
 #include <fstream>
+#include "Graph.h"
+
 int main(int argc, char** argv)
 {	
-	if(argc != 3)
+	if(argc != 4)
 	{
 		return 1;
 	}
@@ -10,10 +11,13 @@ int main(int argc, char** argv)
 	std::fstream fs;
 	Graph* graph = new Graph();
 	
-	fs.open(argv[1], std::fstream::in);
+	fs.open(argv[2], std::fstream::in);
 	fs >> *graph;
 	fs.close();
-	graph->RunDFS(argv[2]);
+	
+	graph->Search(argv[1]);
+	
 	delete graph;
+	
 	return 0;
 }
