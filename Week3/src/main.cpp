@@ -17,6 +17,10 @@ int main(int argc, char** argv)
 	
 	graph->Search(argv[1]);
 	
+	fs.open(argv[3], std::fstream::out);
+	fs << *graph;
+	fs.close();
+	
 	delete graph;
 	
 	return 0;
