@@ -3,19 +3,20 @@ OBJDIR = obj
 BINDIR = bin
 SRCDIR = src
 INCDIR = include
+LD_FLAGS = -O3
+CC_FLAGS = -I$(INCDIR)
 
-OBJS = SEdge.o SNode.o Queue.o SingleLinkedList.o AdjacencyList.o AdjacencyGraph.o Graph.o Prim.o Kruskal.o SpanningTree.o main.o
+CPP_FILES = $(wildcard $(SRCDIR)/*.cpp)
+OBJ_FILES = $(addprefix $(OBJDIR)/,$(notdir $(CPP_FILES:.cpp=.o)))
 
-OUT_OBJS = $(addprefix $(OBJDIR)/,$(OBJS))
+$(LINK_TARGET) : $(OBJ_FILES)
+	g++ $(LD_FLAGS) -o $(BINDIR)/$@ $^
 
-$(LINK_TARGET) : $(OUT_OBJS)
-	g++ -o $(BINDIR)/$@ $^
-	
 $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
-	g++ -I$(INCDIR) -o $@ -c $<
+	g++ $(CC_FLAGS) -c -o $@ $<
 	
 clean :  
-	rm -f $(OBJDIR)/*.o  $(BINDIR)/*.exe *.exe.stackdump
+	rm -f $(OBJDIR)/*  $(BINDIR)/* *.exe.stackdump
 	
 all : 
 	$(LINK_TARGET) 
