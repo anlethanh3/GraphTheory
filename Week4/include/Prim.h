@@ -12,7 +12,6 @@ class Prim : public SpanningTree
 		~Prim();
 		
 		void Run(SingleLinkedList* list, int start);
-		void Write(std::ostream& outDevice);
 };
 
 #endif

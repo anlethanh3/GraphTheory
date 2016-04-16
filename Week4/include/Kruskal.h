@@ -11,7 +11,6 @@ class Kruskal : public SpanningTree
 		~Kruskal();
 		
 		void Run(SingleLinkedList* list, int start);
-		void Write(std::ostream& outDevice);
 };
 
 #endif

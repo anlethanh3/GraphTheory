@@ -33,7 +33,7 @@ void Kruskal::Run(SingleLinkedList* list, int start)
 		edges->Add(edge);
 	}
 	edges->Sort();
-	while(this->result->GetLength() != this->size -1 || edges->GetLength() != 0)
+	while(this->result->GetLength() != this->size -1 && edges->GetLength() != 0)
 	{
 		SEdge* edge = edges->GetHead();
 		if(this->label[edge->x] != this->label[edge->y])
@@ -58,15 +58,4 @@ void Kruskal::Run(SingleLinkedList* list, int start)
 		edges->RemoveHead();
 	}
 	delete edges;
-}
-
-void Kruskal::Write(std::ostream& outDevice)
-{
-	SEdge* edgeTemp = NULL;
-	outDevice<<this->sum<<std::endl;
-	for(int i = 0; i < this->result->GetLength(); i++)
-	{
-		edgeTemp = this->result->GetIndex(i);
-		outDevice<< "(" << edgeTemp->x << "," << edgeTemp->y << ") ";
-	}
 }

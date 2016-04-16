@@ -23,3 +23,21 @@ SpanningTree::~SpanningTree()
 	this->label = NULL;
 	this->result = NULL;
 }
+
+void SpanningTree::Write(std::ostream& outDevice)
+{
+	SEdge* edgeTemp = NULL;
+	if(this->result->GetLength())
+	{
+		outDevice<<this->sum<<std::endl;
+		for(int i = 0; i < this->result->GetLength(); i++)
+		{
+			edgeTemp = this->result->GetIndex(i);
+			outDevice<< "(" << edgeTemp->x << "," << edgeTemp->y << ") ";
+		}
+	}
+	else
+	{
+		outDevice<<"NULL"<<std::endl;
+	}
+}

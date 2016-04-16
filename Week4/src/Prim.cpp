@@ -73,14 +73,3 @@ void Prim::Run(SingleLinkedList* list, int start)
 	}
 	delete queue;
 }
-
-void Prim::Write(std::ostream& outDevice)
-{
-	SEdge* edgeTemp = NULL;
-	outDevice<<this->sum<<std::endl;
-	for(int i = 0; i < this->result->GetLength(); i++)
-	{
-		edgeTemp = this->result->GetIndex(i);
-		outDevice<< "(" << edgeTemp->x << "," << edgeTemp->y << ") ";
-	}
-}
