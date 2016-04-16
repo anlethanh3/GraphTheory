@@ -15,6 +15,11 @@ class SingleLinkedList
 		void 		Add(SEdge* node);
 		SEdge* GetIndex(int index);
 		int 		GetLength();
+		void 		Sort();
+		SEdge* GetHead();
+		void 		RemoveHead();
+	private:
+		void 		Swap(int& value1, int& value2);
 };
 
 #endif

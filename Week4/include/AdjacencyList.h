@@ -9,12 +9,15 @@ class AdjacencyList : public AdjacencyGraph
 {
 	private:
 		SingleLinkedList* list;
+		SingleLinkedList* listEdge;
 		int numEdge;
 	public:
 		AdjacencyList();
 		~AdjacencyList();
 		
 		SingleLinkedList* GetSingleLinkedList();
+		SingleLinkedList* GetSingleLinkedListEdge();
+		int GetNumEdge();
 		
 		void 		Read(std::istream& inDevice);
 		void 		Write(std::ostream& outDevice);

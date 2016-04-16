@@ -1,5 +1,7 @@
 #include "Graph.h"
 #include "AdjacencyList.h"
+#include "Prim.h"
+#include "Kruskal.h"
 
 Graph::Graph()
 {
@@ -8,21 +10,28 @@ Graph::Graph()
 Graph::~Graph()
 {
 	delete this->adjGraph;
-	delete this->prim;
+	delete this->minSpanningTree;
 }
 
-void Graph::RunPrim()
+void Graph::Run(bool isPrim)
 {
-	this->prim = new Prim(this->adjGraph->GetNumVertex());
 	AdjacencyList* adjList = static_cast<AdjacencyList*>(this->adjGraph);
-	this->prim->Run(adjList->GetSingleLinkedList(),0);
+	if(isPrim == true)
+	{
+		this->minSpanningTree = new Prim(this->adjGraph->GetNumVertex());
+		this->minSpanningTree->Run(adjList->GetSingleLinkedList(),0);
+	}
+	else
+	{
+		this->minSpanningTree = new Kruskal(this->adjGraph->GetNumVertex());
+		this->minSpanningTree->Run(adjList->GetSingleLinkedListEdge(),0);
+	}
 }
 
-void Graph::WritePrim(std::ostream& outDevice)
+void Graph::Write(std::ostream& outDevice)
 {
-	this->prim->Write(outDevice);
+	this->minSpanningTree->Write(outDevice);
 }
-
 
 std::istream& operator >> (std::istream& inDevice, Graph& graph)
 {

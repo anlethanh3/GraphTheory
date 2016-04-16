@@ -4,7 +4,7 @@ BINDIR = bin
 SRCDIR = src
 INCDIR = include
 
-OBJS = SEdge.o SNode.o Queue.o SingleLinkedList.o AdjacencyList.o AdjacencyGraph.o Prim.o Graph.o main.o
+OBJS = SEdge.o SNode.o Queue.o SingleLinkedList.o AdjacencyList.o AdjacencyGraph.o Graph.o Prim.o Kruskal.o SpanningTree.o main.o
 
 OUT_OBJS = $(addprefix $(OBJDIR)/,$(OBJS))
 

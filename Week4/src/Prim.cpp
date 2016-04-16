@@ -1,26 +1,16 @@
 #include "Prim.h"
 #include "Queue.h"
-#include <cstdio>
-#include <cstring>
 
 Prim::Prim()
 {
 }
 
-Prim::Prim(const int& size)
+Prim::Prim(const int& size) : SpanningTree(size)
 {
-	this->size = size;
-	this->label = new int[size];
-	for(int i=0; i<size; i++)
-	{
-		this->label[i] = 0;
-	}
 }
 
 Prim::~Prim()
 {
-	delete []this->label;
-	delete this->result;
 }
 
 void Prim::Run(SingleLinkedList* list, int start)
@@ -68,6 +58,8 @@ void Prim::Run(SingleLinkedList* list, int start)
 			edgeTemp->value = edgeMin->value;
 			
 			this->result->Add(edgeTemp);
+			
+			this->sum += edgeTemp->value;
 			this->label[edgeTemp->x] = 1;
 			this->label[edgeTemp->y] = 1;
 			node = new SNode();
@@ -85,15 +77,10 @@ void Prim::Run(SingleLinkedList* list, int start)
 void Prim::Write(std::ostream& outDevice)
 {
 	SEdge* edgeTemp = NULL;
-	int sum = 0;
-	char* buffer = new char[10];
-	strcpy(buffer,"");
-	for(int j = 0; j < this->result->GetLength(); j++)
+	outDevice<<this->sum<<std::endl;
+	for(int i = 0; i < this->result->GetLength(); i++)
 	{
-		edgeTemp = this->result->GetIndex(j);
-		sum = sum + edgeTemp->value;
-		sprintf(buffer, "%s (%d,%d)", buffer, edgeTemp->x, edgeTemp->y);
+		edgeTemp = this->result->GetIndex(i);
+		outDevice<< "(" << edgeTemp->x << "," << edgeTemp->y << ") ";
 	}
-	outDevice<<sum<<std::endl;
-	outDevice<<buffer;
 }

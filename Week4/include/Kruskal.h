@@ -1,15 +1,14 @@
-#ifndef  _PRIM_H_
-#define _PRIM_H_
+#ifndef  _KRUSKAL_H_
+#define _KRUSKAL_H_
 
 #include "SpanningTree.h"
-#include <iostream>
 
-class Prim : public SpanningTree
+class Kruskal : public SpanningTree
 {
 	public:
-		Prim();
-		Prim(const int& size);
-		~Prim();
+		Kruskal();
+		Kruskal(const int& size);
+		~Kruskal();
 		
 		void Run(SingleLinkedList* list, int start);
 		void Write(std::ostream& outDevice);

@@ -1,4 +1,4 @@
-#ifndef 	_SNODE_H_
+#ifndef _SNODE_H_
 #define _SNODE_H_
 
 #ifndef NULL

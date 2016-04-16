@@ -3,19 +3,19 @@
 
 #include <iostream>
 #include "AdjacencyGraph.h"
-#include "Prim.h"
+#include "SpanningTree.h"
 
 class Graph
 {
 	public:
 		AdjacencyGraph* adjGraph;
-		Prim* prim;
+		SpanningTree* minSpanningTree;
 	public:
 		Graph();
 		~Graph();
 		
-		void RunPrim();
-		void WritePrim(std::ostream& outDevice);
+		void Run(bool isPrim);
+		void Write(std::ostream& outDevice);
 		
 		friend std::istream& operator >> (std::istream& inDevice, Graph& graph);
 		friend std::ostream& operator << (std::ostream& outDevice, Graph& graph);

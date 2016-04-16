@@ -1,4 +1,5 @@
 #include "SingleLinkedList.h"
+#include <iostream>
 
 SingleLinkedList::SingleLinkedList()
 {
@@ -39,6 +40,44 @@ void SingleLinkedList::Add(SEdge* node)
 	this->length++;
 }
 
+void SingleLinkedList::Sort()
+{
+	if(pHead == NULL)
+	{
+		return;
+	}
+	else
+	{
+		SEdge* temp = pHead;
+		while(temp->pNext != NULL)
+		{
+			SEdge* min = temp;
+			SEdge* temp2 = temp->pNext;
+			while(temp2 != NULL)
+			{
+				if(temp2->value < min->value || (temp2->value == min->value && temp2->x < min->x))
+				{
+					min = temp2;
+				}
+				temp2 = temp2->pNext;
+			}
+			
+			Swap(temp->x, min->x);
+			Swap(temp->y, min->y);
+			Swap(temp->value, min->value);
+			
+			temp = temp->pNext;
+		}
+	}
+}
+
+void SingleLinkedList::Swap(int& value1, int& value2)
+{
+	int temp = value1;
+	value1 = value2;
+	value2 = temp;
+}
+
 SEdge* SingleLinkedList::GetIndex(int index)
 {
 	SEdge* temp = NULL;
@@ -53,6 +92,24 @@ SEdge* SingleLinkedList::GetIndex(int index)
 		}
 	}
 	return temp;
+}
+
+SEdge* SingleLinkedList::GetHead()
+{
+	return pHead;
+}
+
+void SingleLinkedList::RemoveHead()
+{
+	SEdge* temp;
+	if(pHead)
+	{
+		temp = this->pHead;
+		this->pHead = pHead->pNext;
+		temp->pNext = NULL;
+		this->length--;
+		delete temp;
+	}
 }
 
 int SingleLinkedList::GetLength()
