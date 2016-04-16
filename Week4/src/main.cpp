@@ -4,6 +4,12 @@
 #include <string>
 #include <ctime>
 
+void printtime()
+{
+	std::time_t result = std::time(0);
+    std::cout << std::asctime(std::localtime(&result)) << std::endl;
+}
+
 int main(int argc, char** argv)
 {	
 	if(argc != 4)

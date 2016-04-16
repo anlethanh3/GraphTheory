@@ -13,12 +13,10 @@ Prim::~Prim()
 {
 }
 
-void Prim::Run(SingleLinkedList* list, int start)
+void Prim::Run(int** matrix, int size, int start)
 {
-	this->result = new SingleLinkedList();
 	bool isStop = false;
 	SEdge* edgeMin = NULL;
-	SEdge* edgeTemp = NULL;
 	this->label[start] = 1;
 	Queue* queue = new Queue();
 	SNode* node = new SNode();
@@ -26,44 +24,41 @@ void Prim::Run(SingleLinkedList* list, int start)
 	queue->EnQueue(node);
 	while(this->result->GetLength() != this->size - 1 && isStop == false)
 	{
-		edgeTemp = NULL;
 		edgeMin = NULL;
 		for(int i=0; i<queue->GetLength(); i++)
 		{
 			node = queue->GetIndex(i);
-			for(int j=0; j < list[node->value].GetLength(); j++)
+			for(int j=0; j < size; j++)
 			{
-				edgeTemp = list[node->value].GetIndex(j);
-				if(edgeMin == NULL)
+				if(matrix[node->value][j] != 0 && this->label[j] == 0)
 				{
-					if(this->label[edgeTemp->y] == 0 && this->label[edgeTemp->x] ==1)
+					if(edgeMin == NULL)
 					{
-						edgeMin = edgeTemp;
+						edgeMin = new SEdge();
+						edgeMin->x = node->value;
+						edgeMin->y = j;
+						edgeMin->value = matrix[node->value][j];
 					}
-				}
-				else
-				{
-					if(this->label[edgeTemp->y] ==0 && this->label[edgeTemp->x] ==1 && edgeTemp->value < edgeMin->value)
+					else
 					{
-						edgeMin = edgeTemp;
+						if(matrix[node->value][j] < edgeMin->value)
+						{
+							edgeMin->x = node->value;
+							edgeMin->y = j;
+							edgeMin->value = matrix[node->value][j];
+						}
 					}
 				}
 			}
 		}
 		if(edgeMin != NULL)
 		{
-			edgeTemp = new SEdge();
-			edgeTemp->x = edgeMin->x;
-			edgeTemp->y = edgeMin->y;
-			edgeTemp->value = edgeMin->value;
-			
-			this->result->Add(edgeTemp);
-			
-			this->sum += edgeTemp->value;
-			this->label[edgeTemp->x] = 1;
-			this->label[edgeTemp->y] = 1;
+			this->result->Add(edgeMin);
+			this->sum += edgeMin->value;
+			this->label[edgeMin->x] = 1;
+			this->label[edgeMin->y] = 1;
 			node = new SNode();
-			node->value = edgeTemp->y;
+			node->value = edgeMin->y;
 			queue->EnQueue(node);
 		}
 		else

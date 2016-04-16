@@ -15,8 +15,7 @@ class SpanningTree
 		SpanningTree();
 		SpanningTree(const int& size);
 		virtual ~SpanningTree();
-		
-		virtual void Run(SingleLinkedList* list, int start) = 0;
+
 		virtual void Write(std::ostream& outDevice);
 };
 

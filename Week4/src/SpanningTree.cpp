@@ -13,6 +13,7 @@ SpanningTree::SpanningTree(const int& size)
 	{
 		this->label[i] = 0;
 	}
+	this->result = new SingleLinkedList();
 }
 
 SpanningTree::~SpanningTree()

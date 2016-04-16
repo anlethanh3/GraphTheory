@@ -1,5 +1,5 @@
 #include "Graph.h"
-#include "AdjacencyList.h"
+#include "AdjacencyMatrix.h"
 #include "Prim.h"
 #include "Kruskal.h"
 
@@ -15,16 +15,18 @@ Graph::~Graph()
 
 void Graph::Run(bool isPrim)
 {
-	AdjacencyList* adjList = static_cast<AdjacencyList*>(this->adjGraph);
+	AdjacencyMatrix* adjMatrix = static_cast<AdjacencyMatrix*>(this->adjGraph);
 	if(isPrim == true)
 	{
 		this->minSpanningTree = new Prim(this->adjGraph->GetNumVertex());
-		this->minSpanningTree->Run(adjList->GetSingleLinkedList(),0);
+		Prim* prim = static_cast<Prim*>(this->minSpanningTree);
+		prim->Run(adjMatrix->GetMatrix(),adjMatrix->GetNumVertex(),0);
 	}
 	else
 	{
 		this->minSpanningTree = new Kruskal(this->adjGraph->GetNumVertex());
-		this->minSpanningTree->Run(adjList->GetSingleLinkedListEdge(),0);
+		Kruskal* kruskal = static_cast<Kruskal*>(this->minSpanningTree);
+		kruskal->Run(adjMatrix->GetHeapEdge());
 	}
 }
 
@@ -35,7 +37,11 @@ void Graph::Write(std::ostream& outDevice)
 
 std::istream& operator >> (std::istream& inDevice, Graph& graph)
 {
-	graph.adjGraph = new AdjacencyList();
+	int numVertex = 0;
+	int numEdge = 0;
+	inDevice>>numVertex;
+	inDevice>>numEdge;
+	graph.adjGraph = new AdjacencyMatrix(numVertex, numEdge);
 	inDevice >> *graph.adjGraph;
 	return inDevice;
 }

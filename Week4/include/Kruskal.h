@@ -2,6 +2,8 @@
 #define _KRUSKAL_H_
 
 #include "SpanningTree.h"
+#include "MinHeap.h"
+#include "SEdge.h"
 
 class Kruskal : public SpanningTree
 {
@@ -10,7 +12,7 @@ class Kruskal : public SpanningTree
 		Kruskal(const int& size);
 		~Kruskal();
 		
-		void Run(SingleLinkedList* list, int start);
+		void Run(MinHeap* heapEdge);
 };
 
 #endif

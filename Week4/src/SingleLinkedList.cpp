@@ -19,6 +19,7 @@ SingleLinkedList::~SingleLinkedList()
 		delete temp;
 		temp = NULL;
 	}
+	this->pTail = NULL;
 }
 		
 void SingleLinkedList::Add(SEdge* node)
@@ -26,16 +27,12 @@ void SingleLinkedList::Add(SEdge* node)
 	if(this->pHead == NULL)
 	{
 		this->pHead = node;
+		this->pTail = node;
 	}
 	else
 	{
-		SEdge* temp = this->pHead;
-		while(temp->pNext != NULL)
-		{
-			temp = temp->pNext;
-		}
-		temp->pNext = node;
-		node->pNext = NULL;
+		this->pTail->pNext = node;
+		this->pTail = node;
 	}
 	this->length++;
 }

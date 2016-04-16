@@ -13,29 +13,18 @@ Kruskal::Kruskal(const int& size)
 	{
 		this->label[i] = i;
 	}
+	this->result = new SingleLinkedList();
 }
 
 Kruskal::~Kruskal()
 {
 }
 
-void Kruskal::Run(SingleLinkedList* list, int start)
+void Kruskal::Run(MinHeap* heapEdge)
 {
-	this->result = new SingleLinkedList();
-	SingleLinkedList* edges = new SingleLinkedList();
-	for(int i=0; i<list->GetLength(); i++)
+	while(this->result->GetLength() != this->size -1 && heapEdge->GetMin() != NULL)
 	{
-		SEdge* edge = new SEdge();
-		SEdge* temp = list->GetIndex(i);
-		edge->x = temp->x;
-		edge->y = temp->y;
-		edge->value = temp->value;
-		edges->Add(edge);
-	}
-	edges->Sort();
-	while(this->result->GetLength() != this->size -1 && edges->GetLength() != 0)
-	{
-		SEdge* edge = edges->GetHead();
+		SEdge* edge = heapEdge->RemoveMin();
 		if(this->label[edge->x] != this->label[edge->y])
 		{
 			int min = this->label[edge->x] < this->label[edge->y] ? this->label[edge->x] : this->label[edge->y];
@@ -55,7 +44,6 @@ void Kruskal::Run(SingleLinkedList* list, int start)
 			this->result->Add(temp);
 			this->sum += temp->value;
 		}
-		edges->RemoveHead();
+		delete edge;
 	}
-	delete edges;
 }

@@ -11,7 +11,7 @@ class Prim : public SpanningTree
 		Prim(const int& size);
 		~Prim();
 		
-		void Run(SingleLinkedList* list, int start);
+		void Run(int** matrix, int size, int start);
 };
 
 #endif

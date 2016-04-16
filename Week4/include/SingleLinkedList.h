@@ -7,6 +7,7 @@ class SingleLinkedList
 {
 	private:
 		SEdge* pHead;
+		SEdge* pTail;
 		int length;
 	public:
 		SingleLinkedList();
