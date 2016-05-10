@@ -68,7 +68,7 @@ public:
 		std::string result = "";
 		int start = 0;
 		int len = stringDecode.length();
-		std::string strBitPrevious = "";
+		std::string strPrevious = "";
 		while (start < len)
 		{
 			std::string strBit = stringDecode.substr(start, this->bit);
@@ -78,9 +78,9 @@ public:
 			{
 				strBit = strBit.substr(1);
 			}
-			if (strCurrent != "#" && strBitPrevious != "")
+			if (strCurrent != "#" && strPrevious != "")
 			{
-				trieTreeDecode[WriteBit(index, bit)] = trieTreeDecode[strBitPrevious] + strCurrent.substr(0, 1);
+				trieTreeDecode[WriteBit(index, bit)] = strPrevious + strCurrent.substr(0, 1);
 				index++;
 				if (this->index >= this->max)
 				{
@@ -88,7 +88,7 @@ public:
 					this->max = Pow(2, this->bit);
 				}
 			}
-			strBitPrevious = strBit;
+			strPrevious = strCurrent;
 			result += strCurrent;
 		}
 		return result;
