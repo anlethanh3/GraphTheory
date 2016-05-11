@@ -45,21 +45,26 @@ public:
 		while (start < len)
 		{
 			int next = start + 1;
-			std::string str = "";
-			while ((str = stringEncode.substr(start, next - start + 1)) != "" && trieTree[str] != 0)
+			std::string strCurrent = "";
+			std::string strNext = "";
+			do
 			{
+				strCurrent = stringEncode.substr(start, next - start);
+				strNext = stringEncode.substr(next, 1);
 				next++;
-			}
-			result += WriteBit(trieTree[str.substr(0, str.length() - 1)], this->bit);
-
-			trieTree[str] = this->index;
-			start = next;
-			if (this->index >= this->max)
+			}while (trieTree[strCurrent + strNext] != 0);
+			result += WriteBit(trieTree[strCurrent], this->bit);
+			if (strNext != "#")
 			{
-				this->bit++;
-				this->max = Pow(2, this->bit);
+				trieTree[strCurrent + strNext] = this->index;
+				if (this->index >= this->max)
+				{
+					this->bit++;
+					this->max = Pow(2, this->bit);
+				}
+				this->index++;
 			}
-			this->index++;
+			start = next -1;
 		}
 		return result;
 	}
