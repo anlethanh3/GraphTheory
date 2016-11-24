@@ -40,12 +40,4 @@ artifacts:
 - path: lzw/base
 
   name: base character
-  
-- path: lzw/encode
-
-  name: output file
-  
-- path: lzw/decode
-
-  name: decode file
 
