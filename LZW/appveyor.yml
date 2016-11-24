@@ -1,0 +1,16 @@
+version: 1.0.{build}
+before_build:
+- cmd: >-
+    cd c:\projects\lzw
+
+    echo begin build..
+
+    make all
+build:
+  parallel: true
+  verbosity: normal
+after_build:
+- cmd: "echo zip \n7z a c:\\projects\\lzw\\lzw.zip * -tzip\necho done"
+artifacts:
+- path: lzw/release
+  name: lzw.zip
