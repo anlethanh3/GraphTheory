@@ -31,12 +31,8 @@ build_script:
 
     make
 
-test_script:
-
-- cmd: "echo zip \n7z a c:\\projects\\graptheory\\lzw\\lzw.zip * -tzip\necho done"
-
 artifacts:
 
 - path: lzw
 
-  name: lzw.zip
+  name: lzw.exe
