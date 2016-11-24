@@ -4,9 +4,9 @@ clone_folder: C:\projects\graptheory\
 
 environment:
 
-  CYGWIN_HOME: C:\cygwin64
+  CYGWIN_HOME: C:\cygwin
 
-  CYGWIN_BIN: C:\cygwin64\bin
+  CYGWIN_BIN: C:\cygwin\bin
 
 install:
 
@@ -24,7 +24,7 @@ before_build:
 
 
 
-    make all
+    %CYGWIN_BIN%\make
 
 build:
 
