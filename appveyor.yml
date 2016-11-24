@@ -30,9 +30,9 @@ build_script:
 test_script:
 
 - cmd: >-
-    c:\projects\graptheory\lzw.exe base input encode 0
+    c:\projects\graptheory\lzw\lzw.exe base input encode 0
     
-    c:\projects\graptheory\lzw.exe base encode decode 1
+    c:\projects\graptheory\lzw\lzw.exe base encode decode 1
 
 artifacts:
 
