@@ -22,26 +22,37 @@ build_script:
 
 - cmd: >-
     cd c:\projects\graptheory\lzw
-
-
-
+    
     echo begin build..
-
-
-
+    
     make
+
+test_script:
+
+- cmd: >-
+    cd c:\projects\graptheory\lzw.exe base input encode 0
+    
+    cd c:\projects\graptheory\lzw.exe base encode decode 1
 
 artifacts:
 
 - path: lzw/lzw.exe
 
-  name: lzw
+  name: excute file
 
 - path: lzw/input
 
-  name: lzw
+  name: input file
   
-- path: lzw/output
+- path: lzw/base
 
-  name: lzw
+  name: base character
+  
+- path: lzw/encode
+
+  name: output file
+  
+- path: lzw/decode
+
+  name: decode file
 
