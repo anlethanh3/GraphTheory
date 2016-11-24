@@ -18,7 +18,7 @@ install:
 
 - cmd: set PATH=%PATH%;C:\cygwin\bin
 
-before_build:
+build_script:
 
 - cmd: >-
     cd c:\projects\graptheory\lzw
@@ -31,13 +31,7 @@ before_build:
 
     make
 
-build:
-
-  parallel: true
-
-  verbosity: normal
-
-after_build:
+test_script:
 
 - cmd: "echo zip \n7z a c:\\projects\\graptheory\\lzw\\lzw.zip * -tzip\necho done"
 
