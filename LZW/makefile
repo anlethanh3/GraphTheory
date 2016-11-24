@@ -1,18 +1,12 @@
 LINK_TARGET = lzw.exe
-OBJDIR = 
-BINDIR = 
 
 OBJS = main.o
 
-OUT_OBJS = $(addprefix $(OBJDIR)/,$(OBJS))
-
-# REBUILDABLES = $(OUT_OBJS) $(BINDIR)/$(LINK_TARGET)
-
 $(LINK_TARGET) : $(OUT_OBJS)
-	g++ -o $(BINDIR)/$@ $^
+	g++ -o $@ $^
 	
-$(OBJDIR)/%.o : src/%.cpp
-	g++ -Iinclude -o $@ -c $<
+$%.o : %.cpp
+	g++ -o $@ -c $<
 	
 clean :  
 	rm -f $(OBJDIR)/*.o  $(BINDIR)/*.exe *.exe.stackdump
