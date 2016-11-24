@@ -1,14 +1,12 @@
 version: 1.0.{build}
 
-clone_folder: c:\projects\graptheory\
+clone_folder: C:\projects\graptheory\
 
 environment:
 
-  MINGW_HOME: C:\MinGW
+  CYGWIN_HOME: C:\cygwin64
 
-  MINGW_BIN: C:\MinGW\bin
-
-  MINGW_SYS: C:\MinGW\msys\1.0
+  CYGWIN_BIN: C:\cygwin64\bin
 
 before_build:
 
