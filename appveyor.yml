@@ -33,6 +33,15 @@ build_script:
 
 artifacts:
 
-- path: lzw
+- path: lzw/lzw.exe
 
-  name: lzw.exe
+  name: lzw
+
+- path: lzw/input
+
+  name: lzw
+  
+- path: lzw/output
+
+  name: lzw
+
