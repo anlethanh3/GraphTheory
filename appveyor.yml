@@ -4,7 +4,11 @@ clone_folder: c:\projects\graptheory\
 
 environment:
 
-  CYGWIN_HOME: C:\cygwin
+  MINGW_HOME: C:\MinGW
+
+  MINGW_BIN: C:\MinGW\bin
+
+  MINGW_SYS: C:\MinGW\msys\1.0
 
 before_build:
 
