@@ -27,12 +27,16 @@ build_script:
     
     make
 
-test_script:
+before_test:
 
 - cmd: >-
+
     c:\projects\graptheory\lzw\lzw.exe base input encode 0
-    
+
     c:\projects\graptheory\lzw\lzw.exe base encode decode 1
+    
+after_test:
+
 
 artifacts:
 
