@@ -16,12 +16,11 @@ environment:
 
 install:
 
-- cmd: C:\cygwin\setup-x86.exe -qnNdO -R C:/cygwin -s http://cygwin.mirror.constant.com -l C:/cygwin/var/cache/setup -P autoconf -P automake -P bison -P gcc-core -P gcc-g++ -P mingw-runtime -P mingw-binutils -P mingw-gcc-core -P mingw-gcc-g++ -P mingw-pthreads -P mingw-w32api -P libtool -P make -P python -P gettext-devel -P gettext -P intltool -P libiconv -P pkg-config -P git -P wget -P curl
+- cmd: set PATH=%PATH%;C:\cygwin\bin
 
 before_build:
 
 - cmd: >-
-
     cd c:\projects\graptheory\lzw
 
 
@@ -30,7 +29,7 @@ before_build:
 
 
 
-    %CYGWIN_BIN%\make
+    make
 
 build:
 
