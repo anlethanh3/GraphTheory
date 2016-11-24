@@ -1,6 +1,6 @@
 LINK_TARGET = lzw.exe
-OBJDIR = obj
-BINDIR = bin
+OBJDIR = 
+BINDIR = 
 
 OBJS = main.o
 
